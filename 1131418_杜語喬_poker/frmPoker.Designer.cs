@@ -114,7 +114,7 @@
             // 
             // grpmoney
             // 
-            this.grpmoney.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.grpmoney.BackColor = System.Drawing.Color.Beige;
             this.grpmoney.Controls.Add(this.btnPress);
             this.grpmoney.Controls.Add(this.tbMoney);
             this.grpmoney.Controls.Add(this.label2);
