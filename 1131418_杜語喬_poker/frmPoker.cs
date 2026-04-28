@@ -334,5 +334,10 @@ namespace _1131418_杜語喬_poker
                 ShowCards();
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

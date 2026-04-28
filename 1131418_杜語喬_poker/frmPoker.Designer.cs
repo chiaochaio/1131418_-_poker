@@ -35,13 +35,24 @@
             this.btnChangeCard = new System.Windows.Forms.Button();
             this.btnDealCard = new System.Windows.Forms.Button();
             this.grpmoney = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbMoney = new System.Windows.Forms.TextBox();
             this.btnPress = new System.Windows.Forms.Button();
+            this.tbMoney = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.grpmoney.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpPoker
@@ -66,7 +77,7 @@
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox1.Location = new System.Drawing.Point(38, 220);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(485, 107);
+            this.groupBox1.Size = new System.Drawing.Size(485, 138);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能";
@@ -74,18 +85,19 @@
             // lblResult
             // 
             this.lblResult.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblResult.Location = new System.Drawing.Point(311, 42);
+            this.lblResult.Location = new System.Drawing.Point(313, 57);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(152, 41);
+            this.lblResult.Size = new System.Drawing.Size(166, 58);
             this.lblResult.TabIndex = 3;
             this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCheck
             // 
             this.btnCheck.Enabled = false;
+            this.btnCheck.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnCheck.Location = new System.Drawing.Point(192, 42);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(102, 41);
+            this.btnCheck.Size = new System.Drawing.Size(115, 87);
             this.btnCheck.TabIndex = 2;
             this.btnCheck.Text = "判斷牌型";
             this.btnCheck.UseVisualStyleBackColor = true;
@@ -94,9 +106,10 @@
             // btnChangeCard
             // 
             this.btnChangeCard.Enabled = false;
+            this.btnChangeCard.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnChangeCard.Location = new System.Drawing.Point(100, 42);
             this.btnChangeCard.Name = "btnChangeCard";
-            this.btnChangeCard.Size = new System.Drawing.Size(86, 41);
+            this.btnChangeCard.Size = new System.Drawing.Size(86, 87);
             this.btnChangeCard.TabIndex = 1;
             this.btnChangeCard.Text = "換牌";
             this.btnChangeCard.UseVisualStyleBackColor = true;
@@ -104,9 +117,10 @@
             // 
             // btnDealCard
             // 
+            this.btnDealCard.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnDealCard.Location = new System.Drawing.Point(6, 42);
             this.btnDealCard.Name = "btnDealCard";
-            this.btnDealCard.Size = new System.Drawing.Size(88, 41);
+            this.btnDealCard.Size = new System.Drawing.Size(88, 87);
             this.btnDealCard.TabIndex = 0;
             this.btnDealCard.Text = "發牌";
             this.btnDealCard.UseVisualStyleBackColor = true;
@@ -123,59 +137,163 @@
             this.grpmoney.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.grpmoney.Location = new System.Drawing.Point(529, 54);
             this.grpmoney.Name = "grpmoney";
-            this.grpmoney.Size = new System.Drawing.Size(225, 273);
+            this.grpmoney.Size = new System.Drawing.Size(225, 304);
             this.grpmoney.TabIndex = 2;
             this.grpmoney.TabStop = false;
             this.grpmoney.Text = "下注";
             // 
-            // label1
+            // btnPress
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "總資金:";
+            this.btnPress.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnPress.Location = new System.Drawing.Point(11, 223);
+            this.btnPress.Name = "btnPress";
+            this.btnPress.Size = new System.Drawing.Size(198, 72);
+            this.btnPress.TabIndex = 4;
+            this.btnPress.Text = "押注";
+            this.btnPress.UseVisualStyleBackColor = true;
             // 
-            // lblTotal
+            // tbMoney
             // 
-            this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTotal.Location = new System.Drawing.Point(11, 69);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(203, 39);
-            this.lblTotal.TabIndex = 1;
-            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tbMoney.Location = new System.Drawing.Point(11, 174);
+            this.tbMoney.Name = "tbMoney";
+            this.tbMoney.Size = new System.Drawing.Size(198, 34);
+            this.tbMoney.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 117);
+            this.label2.Location = new System.Drawing.Point(6, 135);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "押注金額:";
             // 
-            // tbMoney
+            // lblTotal
             // 
-            this.tbMoney.Location = new System.Drawing.Point(11, 145);
-            this.tbMoney.Name = "tbMoney";
-            this.tbMoney.Size = new System.Drawing.Size(203, 34);
-            this.tbMoney.TabIndex = 3;
+            this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTotal.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblTotal.Location = new System.Drawing.Point(11, 82);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(198, 39);
+            this.lblTotal.TabIndex = 1;
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnPress
+            // label1
             // 
-            this.btnPress.Location = new System.Drawing.Point(11, 208);
-            this.btnPress.Name = "btnPress";
-            this.btnPress.Size = new System.Drawing.Size(203, 41);
-            this.btnPress.TabIndex = 4;
-            this.btnPress.Text = "押注";
-            this.btnPress.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "總資金:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Location = new System.Drawing.Point(760, 54);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(194, 304);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "牌型/賠率";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(177, 29);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "皇家同花順/250";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(52, 63);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 29);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "同花順/50";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(75, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(95, 29);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "四條/25";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(75, 121);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 29);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "葫蘆/9";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(75, 150);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 29);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "同花/6";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(75, 179);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(82, 29);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "順子/4";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(75, 208);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(82, 29);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "三條/3";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(75, 237);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(82, 29);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "兩對/2";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(75, 266);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 29);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "一對/1";
             // 
             // frmPoker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(797, 354);
+            this.ClientSize = new System.Drawing.Size(992, 370);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grpmoney);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grpPoker);
@@ -189,6 +307,8 @@
             this.groupBox1.ResumeLayout(false);
             this.grpmoney.ResumeLayout(false);
             this.grpmoney.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -207,5 +327,15 @@
         private System.Windows.Forms.Button btnPress;
         private System.Windows.Forms.TextBox tbMoney;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }
