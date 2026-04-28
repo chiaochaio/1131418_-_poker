@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,16 +15,44 @@ namespace _1131418_杜語喬_poker
         PictureBox[] pic = new PictureBox[5];
         int[] allPoker = new int[52];
         int[] playerPoker = new int[5];
-      
+
+        private decimal totalCapital = 1000000m; // 總資金
+        private decimal currentBet = 0m;         // 目前押注
+
         public frmPoker()
         {
             InitializeComponent();
             InitializePoker();
+
+            this.AcceptButton = null;
+
+            // 只屏蔽會翻牌的按鍵 (q, w, e, r, t, y)，允許正常編輯 NumericUpDown
+            if (nudBet != null)
+            {
+                nudBet.KeyPress += (s, ke) => 
+                { 
+                    // 阻止會翻牌的字元輸入
+                    if (char.ToLower(ke.KeyChar) == 'q' || char.ToLower(ke.KeyChar) == 'w' || 
+                        char.ToLower(ke.KeyChar) == 'e' || char.ToLower(ke.KeyChar) == 'r' || 
+                        char.ToLower(ke.KeyChar) == 't' || char.ToLower(ke.KeyChar) == 'y')
+                    {
+                        ke.Handled = true;
+                    }
+                };
+            }
+
+            btnDealCard.Enabled = false;
+            btnChangeCard.Enabled = false;
+            btnCheck.Enabled = false;
+
+            UpdateCapitalDisplay();
+            UpdateCurrentBetDisplay();
         }
 
 
         #region 自定義方法
-        private void InitializePoker() {
+        private void InitializePoker()
+        {
 
             for (int i = 0; i < pic.Length; i++)
             {
@@ -34,7 +61,7 @@ namespace _1131418_杜語喬_poker
                 pic[i].Name = "pic" + i; //把數字轉字串,字串合併
                 pic[i].SizeMode = PictureBoxSizeMode.AutoSize;
                 pic[i].Top = 30; //固定在同一水平線上
-                pic[i].Left = 10 + ((pic[i].Width + 10) * i); //第一張牌的左邊距離是10,第二張牌的左邊距離是第一張牌的寬度加上10,第三張牌的左邊距離是第二張牌的寬度加上10,以此類推
+                pic[i].Left = 10 + ((pic[i].Width + 10) * i);                   
                 pic[i].Visible = true;
                 pic[i].Enabled = false;
                 pic[i].Tag = "back";
@@ -64,11 +91,26 @@ namespace _1131418_杜語喬_poker
                 allPoker[0] = temp;
             }
         }
-        //private void picTest_Click(object sender, MouseEventArgs e)
-        //{
-          //  PictureBox pic = (PictureBox)sender;
-          //  MessageBox.Show("你選擇了" + pic.Name);
-       // }
+
+        private void UpdateCapitalDisplay()
+        {
+            lblCapital.Text = totalCapital.ToString("N0");
+            // 調整 NumericUpDown 最大為目前資金
+            if (nudBet != null)
+            {
+                nudBet.Maximum = (decimal)Int32.MaxValue;
+                if (totalCapital > 0)
+                {
+                    nudBet.Maximum = Math.Max(1, (int)totalCapital);
+                }
+            }
+        }
+
+        private void UpdateCurrentBetDisplay()
+        {
+            lblCurrentBet.Text = currentBet.ToString("N0");
+        }
+
         private void grpPoker_Enter(object sender, EventArgs e)
         {
 
@@ -79,11 +121,39 @@ namespace _1131418_杜語喬_poker
 
         }
 
+        // 按下「下押注」
+        private void btnPlaceBet_Click(object sender, EventArgs e)
+        {
+            decimal bet = nudBet.Value;
+            if (bet <= 0)
+            {
+                MessageBox.Show("押注必須大於 0");
+                return;
+            }
+            if (bet > totalCapital)
+            {
+                MessageBox.Show("押注不能超過總資金");
+                return;
+            }
+
+            // 扣款並紀錄押注
+            currentBet = bet;
+            totalCapital -= currentBet;
+            UpdateCapitalDisplay();
+            UpdateCurrentBetDisplay();
+
+            // 在下押注後允許發牌，並鎖定押注控件直到本局結束
+            btnDealCard.Enabled = true;
+            btnPlaceBet.Enabled = false;
+            nudBet.Enabled = false;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
+            // button3 為判斷牌型 (btnCheck)
             string[] colorList = { "梅花", "方塊", "愛心", "黑桃" };
-            string[] pointList = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q","K" };
-            // 計錄目前五張撲克牌的花色和點數的陣列
+            string[] pointList = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+            // 記錄目前五張撲克牌的花色和點數的陣列
             int[] pokerColor = new int[5];
             int[] pokerPoint = new int[5];
             // 將每張牌的顏色和點數分別存入 pokerColor 和 pokerPoint 陣列
@@ -176,9 +246,56 @@ namespace _1131418_杜語喬_poker
                 result = "雜牌";
             }
             lblResult.Text = result;
+
+            // 依牌型決定賠率 multiplier（葫蘆=9、同花=6、順子=4、一對=1）
+            double multiplier = 0.0;
+            if (result.Contains("同花大順")) multiplier = 100;
+            else if (result.Contains("同花順")) multiplier = 50;
+            else if (result.Contains("鐵支")) multiplier = 25;
+            else if (result.Contains("葫蘆")) multiplier = 9;    // 葫蘆 = 9
+            else if (result.Contains("同花")) multiplier = 6;    // 同花 = 6
+            else if (result.Contains("順子")) multiplier = 4;    // 順子 = 4 (已更新)
+            else if (result.Contains("三條")) multiplier = 3;
+            else if (result.Contains("兩對")) multiplier = 2;
+            else if (result.Contains("一對")) multiplier = 1;    // 一對 = 1 (已更新)
+            else multiplier = 0;
+
+            // 計算並更新總資金：押注在下押注時已扣除，這裡回收押注 * multiplier（若 multiplier=0 則不回收）
+            decimal payout = 0m;
+            if (currentBet > 0m && multiplier > 0)
+            {
+                payout = currentBet * (decimal)multiplier;
+                totalCapital += payout;
+            }
+
+            // 顯示結果 summary
+            if (currentBet <= 0m)
+            {
+                MessageBox.Show($"未下押注，本局結果：{result}");
+            }
+            else
+            {
+                if (multiplier > 0)
+                {
+                    MessageBox.Show($"你拿到 {result}\n賠率：{multiplier}x\n本局回收：{payout:N0}");
+                }
+                else
+                {
+                    MessageBox.Show($"你拿到 {result}\n未中，損失押注：{currentBet:N0}");
+                }
+            }
+
+            // 重置本局狀態
+            currentBet = 0m;
+            UpdateCapitalDisplay();
+            UpdateCurrentBetDisplay();
+
+            // 禁用換牌、檢查按鈕的相應狀態，恢復可押注與發牌
             btnChangeCard.Enabled = false;
             btnCheck.Enabled = false;
-            btnDealCard.Enabled = true; 
+            btnDealCard.Enabled = true;
+            btnPlaceBet.Enabled = true;
+            nudBet.Enabled = true;
         }
 
         private void picTest_Click(object sender, MouseEventArgs e)
@@ -198,7 +315,7 @@ namespace _1131418_杜語喬_poker
                 pic.Tag = "back";
                 pic.Image = GetImage("back");
             }
-           
+
         }
 
         private void ShowCards()
@@ -211,6 +328,8 @@ namespace _1131418_杜語喬_poker
 
         private async void btnDealCard_ClickAsync(object sender, EventArgs e)
         {
+            // 發牌按下後立刻停用發牌，直到本局判斷完成
+            btnDealCard.Enabled = false;
             this.lblResult.Text = "";
             for (int i = 0; i < 5; i++)
             {
@@ -232,14 +351,6 @@ namespace _1131418_杜語喬_poker
                 playerPoker[i] = allPoker[i];
             }
 
-            //測試用
-            //playerPoker[0] = 50;
-            //playerPoker[1] = 38;
-            //playerPoker[2] = 34;
-            //playerPoker[3] = 22;
-            //playerPoker[4] = 18;
-            //this.ShowCards();
-
             for (int i = 0; i < pic.Length; i++)
             {
                 //將牌桌上的牌設成可以點擊
@@ -247,12 +358,13 @@ namespace _1131418_杜語喬_poker
                 pic[i].Tag = "front";
             }
             btnChangeCard.Enabled = true;
-            btnDealCard.Enabled = false;
+            btnDealCard.Enabled = false; // 確保發牌按鈕停用，直到判斷完畢
+            btnCheck.Enabled = true;
         }
 
         private void btnChangeCard_Click(object sender, EventArgs e)
         {
-          
+
             int cardIndex = 5;
             for (int i = 0; i < pic.Length; i++)
             {
@@ -272,11 +384,17 @@ namespace _1131418_杜語喬_poker
             this.btnChangeCard.Enabled = false;
             this.btnCheck.Enabled = true;
             this.btnDealCard.Enabled = false;
-        
+
         }
 
         private void frmPoker_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // 若焦點在 nudBet 上，不執行翻牌邏輯
+            if (nudBet.Focused)
+            {
+                return;
+            }
+
             if (btnDealCard.Enabled == false)
             {
                 switch (e.KeyChar)
@@ -338,6 +456,48 @@ namespace _1131418_杜語喬_poker
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void grpmoney_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            // 重置遊戲狀態到初始化
+            totalCapital = 1000000m;
+            currentBet = 0m;
+            
+            // 清空牌桌
+            for (int i = 0; i < pic.Length; i++)
+            {
+                pic[i].Image = GetImage("back");
+                pic[i].Enabled = false;
+                pic[i].Tag = "back";
+            }
+            
+            // 清空結果顯示
+            lblResult.Text = "";
+            
+            // 重置押注欄
+            nudBet.Value = 0;
+            nudBet.Enabled = true;
+            
+            // 重置按鈕狀態
+            btnPlaceBet.Enabled = true;
+            btnDealCard.Enabled = false;
+            btnChangeCard.Enabled = false;
+            btnCheck.Enabled = false;
+            
+            // 更新 UI 顯示
+            UpdateCapitalDisplay();
+            UpdateCurrentBetDisplay();
         }
     }
 }
