@@ -24,6 +24,7 @@
             this.btnChangeCard = new System.Windows.Forms.Button();
             this.btnDealCard = new System.Windows.Forms.Button();
             this.grpmoney = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.lblCurrentBet = new System.Windows.Forms.Label();
             this.nudBet = new System.Windows.Forms.NumericUpDown();
             this.btnPlaceBet = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grpmoney.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBet)).BeginInit();
@@ -54,7 +54,7 @@
             this.grpPoker.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.grpPoker.Location = new System.Drawing.Point(38, 54);
             this.grpPoker.Name = "grpPoker";
-            this.grpPoker.Size = new System.Drawing.Size(485, 160);
+            this.grpPoker.Size = new System.Drawing.Size(485, 169);
             this.grpPoker.TabIndex = 0;
             this.grpPoker.TabStop = false;
             this.grpPoker.Text = "牌桌";
@@ -67,9 +67,9 @@
             this.groupBox1.Controls.Add(this.btnChangeCard);
             this.groupBox1.Controls.Add(this.btnDealCard);
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox1.Location = new System.Drawing.Point(38, 220);
+            this.groupBox1.Location = new System.Drawing.Point(38, 229);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(485, 138);
+            this.groupBox1.Size = new System.Drawing.Size(485, 129);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能";
@@ -78,7 +78,7 @@
             // 
             this.lblResult.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblResult.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblResult.Location = new System.Drawing.Point(313, 57);
+            this.lblResult.Location = new System.Drawing.Point(313, 47);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(166, 58);
             this.lblResult.TabIndex = 3;
@@ -88,9 +88,9 @@
             // 
             this.btnCheck.Enabled = false;
             this.btnCheck.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnCheck.Location = new System.Drawing.Point(192, 42);
+            this.btnCheck.Location = new System.Drawing.Point(192, 47);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(115, 87);
+            this.btnCheck.Size = new System.Drawing.Size(115, 58);
             this.btnCheck.TabIndex = 2;
             this.btnCheck.Text = "判斷牌型";
             this.btnCheck.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@
             // 
             this.btnChangeCard.Enabled = false;
             this.btnChangeCard.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnChangeCard.Location = new System.Drawing.Point(100, 42);
+            this.btnChangeCard.Location = new System.Drawing.Point(100, 47);
             this.btnChangeCard.Name = "btnChangeCard";
-            this.btnChangeCard.Size = new System.Drawing.Size(86, 87);
+            this.btnChangeCard.Size = new System.Drawing.Size(86, 58);
             this.btnChangeCard.TabIndex = 1;
             this.btnChangeCard.Text = "換牌";
             this.btnChangeCard.UseVisualStyleBackColor = true;
@@ -111,9 +111,9 @@
             // btnDealCard
             // 
             this.btnDealCard.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnDealCard.Location = new System.Drawing.Point(6, 42);
+            this.btnDealCard.Location = new System.Drawing.Point(6, 47);
             this.btnDealCard.Name = "btnDealCard";
-            this.btnDealCard.Size = new System.Drawing.Size(88, 87);
+            this.btnDealCard.Size = new System.Drawing.Size(88, 58);
             this.btnDealCard.TabIndex = 0;
             this.btnDealCard.Text = "發牌";
             this.btnDealCard.UseVisualStyleBackColor = true;
@@ -136,6 +136,19 @@
             this.grpmoney.TabIndex = 2;
             this.grpmoney.TabStop = false;
             this.grpmoney.Text = "下注";
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.MistyRose;
+            this.btnReset.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnReset.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnReset.Location = new System.Drawing.Point(120, 237);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(89, 58);
+            this.btnReset.TabIndex = 7;
+            this.btnReset.Text = "重整";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // lblCurrentBet
             // 
@@ -162,7 +175,7 @@
             this.btnPlaceBet.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnPlaceBet.Location = new System.Drawing.Point(11, 237);
             this.btnPlaceBet.Name = "btnPlaceBet";
-            this.btnPlaceBet.Size = new System.Drawing.Size(103, 58);
+            this.btnPlaceBet.Size = new System.Drawing.Size(92, 58);
             this.btnPlaceBet.TabIndex = 4;
             this.btnPlaceBet.Text = "押注";
             this.btnPlaceBet.UseVisualStyleBackColor = false;
@@ -212,7 +225,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(760, 54);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(164, 304);
+            this.groupBox2.Size = new System.Drawing.Size(158, 304);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "牌型/賠率";
@@ -297,19 +310,6 @@
             this.label3.Size = new System.Drawing.Size(154, 29);
             this.label3.TabIndex = 0;
             this.label3.Text = "同花大順/250";
-            // 
-            // btnReset
-            // 
-            this.btnReset.BackColor = System.Drawing.Color.MistyRose;
-            this.btnReset.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnReset.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnReset.Location = new System.Drawing.Point(120, 237);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(89, 58);
-            this.btnReset.TabIndex = 7;
-            this.btnReset.Text = "重整";
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // frmPoker
             // 
